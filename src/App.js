@@ -4,14 +4,31 @@ import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import './App.css';
 import Cv from "./cv/Cv";
+import firebase from './firebase';
 
 class App extends Component {
   constructor(props) {
     super(props)
 
+    this.usersRef = firebase.database().ref('users');
+
     this.state = {
-      value: 'select'
+      value: 'select',
+      users: []
     }
+  }
+
+  componentDidMount() {
+    this.usersRef.on('value', (snapshot) => {
+      let users = snapshot.val();
+      let newState = [];
+      for (let user in users) {
+        newState.push(users[user]);
+      }
+      this.setState({
+        users: newState
+      });
+    });
   }
 
   printDocument() {
@@ -30,13 +47,18 @@ class App extends Component {
     });
   }
 
-  change(event){
+  change(event) {
     this.setState({
       value: event.target.value
     });
   }
 
   render() {
+    let user = {};
+    if (this.state.users[0]) {
+      user = this.state.users[0];
+    }
+
     return (
       <div className="App">
         <header className="App-header">
@@ -44,14 +66,14 @@ class App extends Component {
           <h1 className="App-title">Welcome to Dynamic CV</h1>
         </header>
         <p className="App-intro">
-        <button onClick={this.printDocument}>Print</button>
-        <select id="lang" onChange={this.change} value={this.state.value}>
-          <option value="select">Select</option>
-          <option value="Java">Java</option>
-          <option value="C++">C++</option>
-        </select>
+          <button onClick={this.printDocument}>Print</button>
+          <select id="lang" onChange={this.change} value={this.state.value}>
+            <option value="select">Select</option>
+            <option value="Java">Java</option>
+            <option value="C++">C++</option>
+          </select>
         </p>
-        <Cv />
+        <Cv user={user} />
       </div>
     );
   }
