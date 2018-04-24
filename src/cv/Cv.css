@@ -1,13 +1,13 @@
 .Cv {
-  height:594mm;
-  width:210mm;
+  height: 594mm;
+  width: 210mm;
   /* position: relative; */
   margin: auto;
 }
 
 .Cv-page {
-  height:297mm;
-  width:210mm;
+  height: 297mm;
+  width: 210mm;
   background: white;
   margin: auto;
   position: relative;
@@ -19,29 +19,10 @@
   bottom: 0px;
 }
 
-.Cv-title {
-  width: 100%;
-  height: 160px;
-}
-
 .Cv-logo {
   height: 80px;
   display: inline-block;
   float: left;
   margin-top: 50px;
   margin-left: 50px;
-}
-
-.Cv-logo-header {
-  height: 80px;
-}
-.Cv-title .text-main {
-  position: absolute;
-  top: 80px;
-  left: 200px;
-}
-.Cv-title .text-second {
-  position: absolute;
-  top: 100px;
-  left: 200px;
 }
