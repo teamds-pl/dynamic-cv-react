@@ -3,6 +3,8 @@ import './Cv.css';
 import Experience from "./experience/Experience";
 import Education from "./education/Education";
 import Skillset from "./skillset/Skillset";
+import PageSecond from "./pageSecond/pageSecond";
+import PageFirst from "./pageFirst/pageFirst";
 
 import logoDS from './../img/logoDS.svg';
 import frontEnd from './../img/front-end.svg';
@@ -48,100 +50,58 @@ class Cv extends Component {
     let experiencesList = [];
     let educationList = [];
     let skillsetList = [];
-    let headerLogo;
     let title;
+    let sourcesFirst = {};
+    let sourcesSecond = {};
 
-    if(this.state.users[0]) {
+    sourcesFirst.logoDS = logoDS;
+    sourcesFirst.headerLogo = "";
+    sourcesFirst.experience = experience;
+    sourcesFirst.education = education;
+
+    sourcesSecond.target = target;
+    sourcesSecond.skillset = skillset;
+    sourcesSecond.profile = profile;
+    sourcesSecond.bluePartCircle = bluePartCircle;
+
+    if (this.state.users[0]) {
       user = this.state.users[0];
 
-      experiencesList = user.experience.map(function(experience, index){
+      experiencesList = user.experience.map(function (experience, index) {
         return (
-          <Experience experience={experience} key={index}/>
+          <Experience experience={experience} key={index} />
         );
       });
 
-      educationList = user.education.map(function(education, index){
+      educationList = user.education.map(function (education, index) {
         return (
           <Education education={education} key={index} />
         )
       });
 
       skillsetList = (
-        <Skillset skillset={user.skillset}/>
+        <Skillset skillset={user.skillset} />
       );
 
       title = user.title.toLowerCase()
       if (title.includes('front-end')) {
-        headerLogo = frontEnd;
+        sourcesFirst.headerLogo = frontEnd;
       } else if (title.includes('java')) {
-        headerLogo = java;
+        sourcesFirst.headerLogo = java;
       } else if (title.includes('test')) {
-        headerLogo = test;
+        sourcesFirst.headerLogo = test;
       } else if (title.includes('bussiness')) {
-        headerLogo = bussinessAnalyst;
+        sourcesFirst.headerLogo = bussinessAnalyst;
       } else if (title.includes('cq5')) {
-        headerLogo = cq5;
+        sourcesFirst.headerLogo = cq5;
       }
     }
 
 
     return (
       <div className="Cv">
-        <div className="Cv-page" id="divToPrintPage1">
-          <div className="Cv-title">
-            <img src={logoDS} className="Cv-logo" alt="logo" />
-            {headerLogo ? <img src={headerLogo} className="Cv-logo-header" alt="logo" /> : ''}
-            <div className="text-main">{user.name}</div>
-            <div className="text-second">{user.title}</div>
-          </div>
-          <div className="Cv-experience">
-            <div className="Cv-experience-title">
-              <img src={experience} className="Cv-logo" alt="logo" />
-              <span>EXPERIENCE</span>
-            </div>
-            {experiencesList}
-          </div>
-          <div className="Cv-education">
-            <div className="Cv-education-title">
-              <img src={education} className="Cv-logo" alt="logo" />
-              <span>EDUCATION</span>
-            </div>
-            {educationList}
-          </div>
-        </div>
-        <div className="Cv-page" id="divToPrintPage2">
-          <div className="Cv-expectations">
-            <div className="Cv-expectations-title">
-              <img src={target} className="Cv-logo" alt="logo" />
-              <span>PROFESIONAL EXPECTATION</span>
-            </div>
-            <div className="Cv-expectations-desc">
-              <span>{user.professionalExpectations}</span>
-            </div>
-          </div>
-          <div className="Cv-skillset">
-            <div className="Cv-skillset-logo">
-              <img src={skillset} className="Cv-logo" alt="logo" />
-            </div>
-            <div className="Cv-skillset-title">
-              <span>SKILLSET</span>
-            </div>
-            {skillsetList}
-          </div>
-          <div className="Cv-personalNote">
-            <div className="Cv-personalNote-title">
-              <img src={profile} className="Cv-logo" alt="logo" />
-              <span>PERSONAL NOTE</span>
-            </div>
-            <div className="Cv-personalNote-desc">
-              {user.personalNote}
-            </div>
-          </div>
-          <div className="Cv-contact">
-            <img src={bluePartCircle} className="Cv-logo" alt="logo" />
-            <span>www.ds.eu</span>
-          </div>
-        </div>
+        <PageFirst user={user} educationList={educationList} experiencesList={experiencesList} sources={sourcesFirst} />
+        <PageSecond user={user} skillsetList={skillsetList} sources={sourcesSecond} />
       </div>
     );
   }
