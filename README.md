@@ -34,6 +34,8 @@ my-app/
     logo.svg
 ```
 
+Before run project you should duplicate file environment_template.js and one of them rename to *"environment.js"*. Fill all fields in environment.js.
+
 For the project to build, **these files must exist with exact filenames**:
 
 * `public/index.html` is the page template;
