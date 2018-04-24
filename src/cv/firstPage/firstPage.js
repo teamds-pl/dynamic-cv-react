@@ -21,6 +21,12 @@ class FirstPage extends Component {
         let sources = this.props.sources;
         let experiencesList = [];
         let educationList = [];
+        let dafaultSources = {
+            logoDS: logoDS,
+            headerLogo: headerLogo,
+            experience: experience,
+            education: education
+        }
 
         if (user.title) {
             title = user.title.toLowerCase()
@@ -53,10 +59,7 @@ class FirstPage extends Component {
             });
         }
 
-        if (!sources.logoDS) sources.logoDS = logoDS;
-        if (!sources.headerLogo) sources.headerLogo = headerLogo;
-        if (!sources.experience) sources.experience = experience;
-        if (!sources.education) sources.education = education;
+        sources = { ...dafaultSources, ...sources };
 
         return (
             <div className="Cv-page" id="firstPage" >

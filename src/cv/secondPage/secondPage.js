@@ -12,6 +12,12 @@ class SecondPage extends Component {
         let user = this.props.user;
         let sources = this.props.sources;
         let skillsetList = [];
+        let dafaultSources = {
+            target: target,
+            skillset: skillset,
+            profile: profile,
+            bluePartCircle: bluePartCircle
+        }
 
         if (user.skillset) {
             skillsetList = (
@@ -19,10 +25,7 @@ class SecondPage extends Component {
             );
         }
 
-        if (!sources.target) sources.target = target;
-        if (!sources.skillset) sources.skillset = skillset;
-        if (!sources.profile) sources.profile = profile;
-        if (!sources.bluePartCircle) sources.bluePartCircle = bluePartCircle;
+        sources = { ...dafaultSources, ...sources };
 
         return (
             <div className="Cv-page" id="secondPage">
