@@ -31,15 +31,15 @@ class FirstPage extends Component {
         if (user.title) {
             title = user.title.toLowerCase()
             if (title.includes('front-end')) {
-                headerLogo = frontEnd;
+                dafaultSources.headerLogo = frontEnd;
             } else if (title.includes('java')) {
-                headerLogo = java;
+                dafaultSources.headerLogo = java;
             } else if (title.includes('test')) {
-                headerLogo = test;
+                dafaultSources.headerLogo = test;
             } else if (title.includes('bussiness')) {
-                headerLogo = bussinessAnalyst;
+                dafaultSources.headerLogo = bussinessAnalyst;
             } else if (title.includes('cq5')) {
-                headerLogo = cq5;
+                dafaultSources.headerLogo = cq5;
             }
         }
 
