@@ -4,30 +4,27 @@ import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import './App.css';
 import Cv from "./cv/Cv";
-import firebase from './firebase';
+import {auth, firestore} from './firebase';
+import { credentials } from "./environment";
 
 class App extends Component {
   constructor(props) {
     super(props)
 
-    this.usersRef = firebase.database().ref('users');
-
     this.state = {
       value: 'select',
-      users: []
+      user: {}
     }
-  }
 
-  componentDidMount() {
-    this.usersRef.on('value', (snapshot) => {
-      let users = snapshot.val();
-      let newState = [];
-      for (let user in users) {
-        newState.push(users[user]);
-      }
-      this.setState({
-        users: newState
+    auth.signInWithEmailAndPassword(credentials.login, credentials.password).then((authUser) => {
+      this.userRef = firestore.collection('users').doc(authUser.uid).onSnapshot((snapshot) => {
+        this.setState({
+          user: snapshot.data()
+        });
       });
+    })
+    .catch(error => {
+      console.log('error', error);
     });
   }
 
@@ -54,10 +51,7 @@ class App extends Component {
   }
 
   render() {
-    let user = {};
-    if (this.state.users[0]) {
-      user = this.state.users[0];
-    }
+    let { user } = this.state;
 
     return (
       <div className="App">
