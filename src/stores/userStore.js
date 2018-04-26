@@ -13,8 +13,8 @@ class UserStore {
         this.usersRef = firebase.database().ref('users');
 
         this.usersRef.on('value', (snapshot) => {
-            let users = snapshot.val();
-            let newState = [];
+            const users = snapshot.val();
+            const newState = [];
             for (let user in users) {
               newState.push(users[user]);
             }
