@@ -32,8 +32,8 @@ class App extends Component {
   }
 
   printDocument() {
-    const input = document.getElementById('divToPrintPage1');
-    const input2 = document.getElementById('divToPrintPage2');
+    const input = document.getElementById('firstPage');
+    const input2 = document.getElementById('secondPage');
     html2canvas(input).then((canvas) => {
       html2canvas(input2).then((canvas2) => {
         const imgData = canvas.toDataURL('image/png');
