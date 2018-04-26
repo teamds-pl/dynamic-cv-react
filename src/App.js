@@ -4,7 +4,12 @@ import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import './App.css';
 import Cv from "./cv/Cv";
+import Login from "./login/login";
 import firebase from './firebase';
+import {
+  BrowserRouter as Router,
+  Route
+} from 'react-router-dom';
 
 class App extends Component {
   constructor(props) {
@@ -60,21 +65,24 @@ class App extends Component {
     }
 
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logoDS} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to Dynamic CV</h1>
-        </header>
-        <p className="App-intro">
-          <button onClick={this.printDocument}>Print</button>
-          <select id="lang" onChange={this.change} value={this.state.value}>
-            <option value="select">Select</option>
-            <option value="Java">Java</option>
-            <option value="C++">C++</option>
-          </select>
-        </p>
-        <Cv user={user} />
-      </div>
+      <Router>
+        <div className="App">
+          <header className="App-header">
+            <img src={logoDS} className="App-logo" alt="logo" />
+            <h1 className="App-title">Welcome to Dynamic CV</h1>
+          </header>
+          <p className="App-intro">
+            <button onClick={this.printDocument}>Print</button>
+            <select id="lang" onChange={this.change} value={this.state.value}>
+              <option value="select">Select</option>
+              <option value="Java">Java</option>
+              <option value="C++">C++</option>
+            </select>
+          </p>
+          <Route path="/cv" render={() => <Cv user={user} />} />
+          <Route path="/" render={() => <Login />} />
+        </div>
+      </Router>
     );
   }
 }
