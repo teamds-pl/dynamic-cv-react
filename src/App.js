@@ -4,6 +4,13 @@ import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import './App.css';
 import Cv from "./cv/Cv";
+import Login from "./login/login";
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom';
+
 
 import { observer } from 'mobx-react'; 
 import UserStore from './stores/userStore';  
@@ -45,21 +52,26 @@ const App = observer(
       const user = UserStore.user;
 
       return (
-        <div className="App">
-          <header className="App-header">
-            <img src={logoDS} className="App-logo" alt="logo" />
-            <h1 className="App-title">Welcome to Dynamic CV</h1>
-          </header>
-          <p className="App-intro">
-            <button onClick={this.printDocument}>Print</button>
-            <select id="lang" onChange={this.change} value={this.state.value}>
-              <option value="select">Select</option>
-              <option value="Java">Java</option>
-              <option value="C++">C++</option>
-            </select>
-          </p>
-          {user ? <Cv user={user} /> : ''}
-        </div>
+        <Router>
+          <div className="App">
+            <header className="App-header">
+              <img src={logoDS} className="App-logo" alt="logo" />
+              <h1 className="App-title">Welcome to Dynamic CV</h1>
+            </header>
+            <p className="App-intro">
+              <button onClick={this.printDocument}>Print</button>
+              <select id="lang" onChange={this.change} value={this.state.value}>
+                <option value="select">Select</option>
+                <option value="Java">Java</option>
+                <option value="C++">C++</option>
+              </select>
+              <Link to="/">Home</Link>
+              <Link to="/cv">Cv</Link>
+            </p>
+            <Route path="/cv" render={() => <Cv user={user} /> } />
+            <Route path="/" render={() => <Login />} />
+          </div>
+        </Router>
       );
     }
   }

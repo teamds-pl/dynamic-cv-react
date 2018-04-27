@@ -10,6 +10,7 @@ class UserStore {
         auth.signInWithEmailAndPassword(credentials.login, credentials.password).then((authUser) => {
             this.userRef = firestore.collection('users').doc(authUser.uid).onSnapshot((snapshot) => {
                 this.user = snapshot.data();
+                console.log(this.user);
             });
         })
         .catch(error => {

@@ -9,8 +9,13 @@ class Cv extends Component {
 
     return (
       <div className="Cv">
-        <FirstPage user={user} sources={{}} />
-        <SecondPage user={user} sources={{}} />
+        {user ?
+          <div>
+            <FirstPage user={user} sources={{}} />
+            <SecondPage user={user} sources={{}} />
+          </div>
+        : ''}
+        
       </div>
     );
   }
