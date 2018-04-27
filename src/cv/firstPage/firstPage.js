@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import Experience from "../experience/Experience";
-import Education from "../education/Education";
+import EducationContainer from "../educationContainer/EducationContainer";
+import ExperienceContainer from "../experienceContainer/ExperienceContainer";
+import TitleContainer from "../titleContainer/TitleContainer";
 
 import logoDS from '../../img/logoDS.svg';
 import frontEnd from '../../img/front-end.svg';
@@ -19,8 +20,6 @@ class FirstPage extends Component {
         let headerLogo = "";
         let user = this.props.user;
         let sources = this.props.sources;
-        let experiencesList = [];
-        let educationList = [];
         let dafaultSources = {
             logoDS: logoDS,
             headerLogo: headerLogo,
@@ -43,46 +42,13 @@ class FirstPage extends Component {
             }
         }
 
-        if (user.experience) {
-            experiencesList = user.experience.map(function (experience, index) {
-                return (
-                    <Experience experience={experience} key={index} />
-                );
-            });
-        }
-
-        if (user.education) {
-            educationList = user.education.map(function (education, index) {
-                return (
-                    <Education education={education} key={index} />
-                )
-            });
-        }
-
         sources = { ...dafaultSources, ...sources };
 
         return (
             <div className="Cv-page" id="firstPage" >
-                <div className="Cv-title">
-                    <img src={sources.logoDS} className="Cv-logo" alt="logo" />
-                    {sources.headerLogo ? <img src={sources.headerLogo} className="Cv-logo-header" alt="logo" /> : ''}
-                    <div className="text-main">{user.name ? user.name : ""}</div>
-                    <div className="text-second">{user.title ? user.title : ""}</div>
-                </div>
-                <div className="Cv-experience">
-                    <div className="Cv-experience-title">
-                        <img src={sources.experience} className="Cv-logo" alt="logo" />
-                        <span>EXPERIENCE</span>
-                    </div>
-                    {experiencesList}
-                </div>
-                <div className="Cv-education">
-                    <div className="Cv-education-title">
-                        <img src={sources.education} className="Cv-logo" alt="logo" />
-                        <span>EDUCATION</span>
-                    </div>
-                    {educationList}
-                </div>
+                <TitleContainer user={user} sources={sources} />
+                <ExperienceContainer userExperience={user.experience} experienceSource={sources.experience} />
+                <EducationContainer userEducations={user.education} educationSource={sources.education} />
             </div >
         );
     }
