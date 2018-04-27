@@ -1,31 +1,25 @@
-import { observable, decorate, computed } from "mobx"
-import firebase from '../firebase';
+import { observable, decorate } from "mobx"
+import {auth, firestore} from '../firebase';
+import { credentials } from "../environment";
 
 class UserStore {
-    users = [];
     usersRef;
-
-    get allUsers(){
-        return this.users.slice();
-    }
+    user;
 
     constructor() {
-        this.usersRef = firebase.database().ref('users');
-
-        this.usersRef.on('value', (snapshot) => {
-            const users = snapshot.val();
-            const newState = [];
-            for (let user in users) {
-              newState.push(users[user]);
-            }
-            this.users = newState;
+        auth.signInWithEmailAndPassword(credentials.login, credentials.password).then((authUser) => {
+            this.userRef = firestore.collection('users').doc(authUser.uid).onSnapshot((snapshot) => {
+                this.user = snapshot.data();
+            });
+        })
+        .catch(error => {
+            console.log('error', error);
         });
     }
 }
 
 decorate(UserStore, {
-    users: observable,
-    allUsers: computed
+    user: observable
 })
 
 export default new UserStore();

@@ -15,7 +15,7 @@ const App = observer(
 
       this.state = {
         value: 'select',
-        users: []
+        user: {}
       }
     }
 
@@ -42,11 +42,7 @@ const App = observer(
     }
 
     render() {
-      let users = UserStore.allUsers;
-      let user = {};
-      if (users[0]) {
-        user = users[0];
-      }
+      const user = UserStore.user;
 
       return (
         <div className="App">
@@ -62,7 +58,7 @@ const App = observer(
               <option value="C++">C++</option>
             </select>
           </p>
-          <Cv user={user} />
+          {user ? <Cv user={user} /> : ''}
         </div>
       );
     }
