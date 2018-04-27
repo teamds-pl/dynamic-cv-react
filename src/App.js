@@ -5,86 +5,76 @@ import jsPDF from "jspdf";
 import './App.css';
 import Cv from "./cv/Cv";
 import Login from "./login/login";
-import firebase from './firebase';
 import {
   BrowserRouter as Router,
-  Route
+  Route,
+  Link
 } from 'react-router-dom';
 
-class App extends Component {
-  constructor(props) {
-    super(props)
 
-    this.usersRef = firebase.database().ref('users');
+import { observer } from 'mobx-react'; 
+import UserStore from './stores/userStore';  
 
-    this.state = {
-      value: 'select',
-      users: []
-    }
-  }
+const App = observer(
+  class App extends Component {
+    constructor(props) {
+      super(props)
 
-  componentDidMount() {
-    this.usersRef.on('value', (snapshot) => {
-      let users = snapshot.val();
-      let newState = [];
-      for (let user in users) {
-        newState.push(users[user]);
+      this.state = {
+        value: 'select',
+        user: {}
       }
-      this.setState({
-        users: newState
-      });
-    });
-  }
-
-  printDocument() {
-    const input = document.getElementById('firstPage');
-    const input2 = document.getElementById('secondPage');
-    html2canvas(input).then((canvas) => {
-      html2canvas(input2).then((canvas2) => {
-        const imgData = canvas.toDataURL('image/png');
-        const imgData2 = canvas2.toDataURL('image/png');
-        const pdf = new jsPDF();
-        pdf.addImage(imgData, 'JPEG', 0, 0);
-        pdf.addPage();
-        pdf.addImage(imgData2, 'JPEG', 0, 0);
-        pdf.save("download.pdf");
-      });
-    });
-  }
-
-  change(event) {
-    this.setState({
-      value: event.target.value
-    });
-  }
-
-  render() {
-    let user = {};
-    if (this.state.users[0]) {
-      user = this.state.users[0];
     }
 
-    return (
-      <Router>
-        <div className="App">
-          <header className="App-header">
-            <img src={logoDS} className="App-logo" alt="logo" />
-            <h1 className="App-title">Welcome to Dynamic CV</h1>
-          </header>
-          <p className="App-intro">
-            <button onClick={this.printDocument}>Print</button>
-            <select id="lang" onChange={this.change} value={this.state.value}>
-              <option value="select">Select</option>
-              <option value="Java">Java</option>
-              <option value="C++">C++</option>
-            </select>
-          </p>
-          <Route path="/cv" render={() => <Cv user={user} />} />
-          <Route path="/" render={() => <Login />} />
-        </div>
-      </Router>
-    );
+    printDocument() {
+      const input = document.getElementById('divToPrintPage1');
+      const input2 = document.getElementById('divToPrintPage2');
+      html2canvas(input).then((canvas) => {
+        html2canvas(input2).then((canvas2) => {
+          const imgData = canvas.toDataURL('image/png');
+          const imgData2 = canvas2.toDataURL('image/png');
+          const pdf = new jsPDF();
+          pdf.addImage(imgData, 'JPEG', 0, 0);
+          pdf.addPage();
+          pdf.addImage(imgData2, 'JPEG', 0, 0);
+          pdf.save("download.pdf");
+        });
+      });
+    }
+
+    change(event) {
+      this.setState({
+        value: event.target.value
+      });
+    }
+
+    render() {
+      const user = UserStore.user;
+
+      return (
+        <Router>
+          <div className="App">
+            <header className="App-header">
+              <img src={logoDS} className="App-logo" alt="logo" />
+              <h1 className="App-title">Welcome to Dynamic CV</h1>
+            </header>
+            <p className="App-intro">
+              <button onClick={this.printDocument}>Print</button>
+              <select id="lang" onChange={this.change} value={this.state.value}>
+                <option value="select">Select</option>
+                <option value="Java">Java</option>
+                <option value="C++">C++</option>
+              </select>
+              <Link to="/">Home</Link>
+              <Link to="/cv">Cv</Link>
+            </p>
+            <Route path="/cv" render={() => <Cv user={user} /> } />
+            <Route path="/" render={() => <Login />} />
+          </div>
+        </Router>
+      );
+    }
   }
-}
+)
 
 export default App;

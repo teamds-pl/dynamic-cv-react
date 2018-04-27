@@ -1,4 +1,4 @@
-export const environment = {
+const environment = {
     production: false,
     firebase: {
         apiKey: '',
@@ -9,3 +9,13 @@ export const environment = {
         messagingSenderId: ''
     }
 };
+
+const credentials = {
+    login: '',
+    password: ''
+}
+
+export {
+    environment,
+    credentials
+}

@@ -1,4 +1,13 @@
 import firebase from 'firebase'
+import 'firebase/firestore';
 import { environment } from "./environment";
-firebase.initializeApp(environment.firebase);
-export default firebase;
+
+const app = firebase.initializeApp(environment.firebase);
+const auth = app.auth();
+const firestore = app.firestore();
+
+export {
+    firebase,
+    auth,
+    firestore
+};
