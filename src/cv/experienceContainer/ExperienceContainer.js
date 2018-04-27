@@ -3,8 +3,8 @@ import Experience from "./experience/Experience";
 import './ExperienceContainer.css';
 
 function ExperienceContainer(props) {
-    let userExperience = props.userExperience;
-    let experienceSource = props.experienceSource;
+    const userExperience = props.userExperience;
+    const experienceSource = props.experienceSource;
     let experiencesList = [];
 
     if (userExperience) {

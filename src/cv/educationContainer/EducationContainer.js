@@ -3,8 +3,8 @@ import Education from "./education/Education";
 import './EducationContainer.css';
 
 function EducationContainer(props) {
-    let userEducations = props.userEducations;
-    let educationSource = props.educationSource;
+    const userEducations = props.userEducations;
+    const educationSource = props.educationSource;
     let educationList = [];
 
     if (userEducations) {
