@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Experience from "../experience/Experience";
 import Education from "../education/Education";
 
@@ -13,79 +13,77 @@ import experience from '../../img/experience.svg';
 
 import './firstPage.css';
 
-class FirstPage extends Component {
-    render() {
-        let title = "";
-        let headerLogo = "";
-        let user = this.props.user;
-        let sources = this.props.sources;
-        let experiencesList = [];
-        let educationList = [];
-        let dafaultSources = {
-            logoDS: logoDS,
-            headerLogo: headerLogo,
-            experience: experience,
-            education: education
-        }
-
-        if (user.title) {
-            title = user.title.toLowerCase()
-            if (title.includes('front-end')) {
-                dafaultSources.headerLogo = frontEnd;
-            } else if (title.includes('java')) {
-                dafaultSources.headerLogo = java;
-            } else if (title.includes('test')) {
-                dafaultSources.headerLogo = test;
-            } else if (title.includes('bussiness')) {
-                dafaultSources.headerLogo = bussinessAnalyst;
-            } else if (title.includes('cq5')) {
-                dafaultSources.headerLogo = cq5;
-            }
-        }
-
-        if (user.experience) {
-            experiencesList = user.experience.map(function (experience, index) {
-                return (
-                    <Experience experience={experience} key={index} />
-                );
-            });
-        }
-
-        if (user.education) {
-            educationList = user.education.map(function (education, index) {
-                return (
-                    <Education education={education} key={index} />
-                )
-            });
-        }
-
-        sources = { ...dafaultSources, ...sources };
-
-        return (
-            <div className="Cv-page" id="firstPage" >
-                <div className="Cv-title">
-                    <img src={sources.logoDS} className="Cv-logo" alt="logo" />
-                    {sources.headerLogo ? <img src={sources.headerLogo} className="Cv-logo-header" alt="logo" /> : ''}
-                    <div className="text-main">{user.name ? user.name : ""}</div>
-                    <div className="text-second">{user.title ? user.title : ""}</div>
-                </div>
-                <div className="Cv-experience">
-                    <div className="Cv-experience-title">
-                        <img src={sources.experience} className="Cv-logo" alt="logo" />
-                        <span>EXPERIENCE</span>
-                    </div>
-                    {experiencesList}
-                </div>
-                <div className="Cv-education">
-                    <div className="Cv-education-title">
-                        <img src={sources.education} className="Cv-logo" alt="logo" />
-                        <span>EDUCATION</span>
-                    </div>
-                    {educationList}
-                </div>
-            </div >
-        );
+function FirstPage(props) {
+    let title = "";
+    let headerLogo = "";
+    let user = props.user;
+    let sources = props.sources;
+    let experiencesList = [];
+    let educationList = [];
+    let dafaultSources = {
+        logoDS: logoDS,
+        headerLogo: headerLogo,
+        experience: experience,
+        education: education
     }
+
+    if (user.title) {
+        title = user.title.toLowerCase()
+        if (title.includes('front-end')) {
+            dafaultSources.headerLogo = frontEnd;
+        } else if (title.includes('java')) {
+            dafaultSources.headerLogo = java;
+        } else if (title.includes('test')) {
+            dafaultSources.headerLogo = test;
+        } else if (title.includes('bussiness')) {
+            dafaultSources.headerLogo = bussinessAnalyst;
+        } else if (title.includes('cq5')) {
+            dafaultSources.headerLogo = cq5;
+        }
+    }
+
+    if (user.experience) {
+        experiencesList = user.experience.map(function (experience, index) {
+            return (
+                <Experience experience={experience} key={index} />
+            );
+        });
+    }
+
+    if (user.education) {
+        educationList = user.education.map(function (education, index) {
+            return (
+                <Education education={education} key={index} />
+            )
+        });
+    }
+
+    sources = { ...dafaultSources, ...sources };
+
+    return (
+        <div className="Cv-page" id="firstPage" >
+            <div className="Cv-title">
+                <img src={sources.logoDS} className="Cv-logo" alt="logo" />
+                {sources.headerLogo ? <img src={sources.headerLogo} className="Cv-logo-header" alt="logo" /> : ''}
+                <div className="text-main">{user.name ? user.name : ""}</div>
+                <div className="text-second">{user.title ? user.title : ""}</div>
+            </div>
+            <div className="Cv-experience">
+                <div className="Cv-experience-title">
+                    <img src={sources.experience} className="Cv-logo" alt="logo" />
+                    <span>EXPERIENCE</span>
+                </div>
+                {experiencesList}
+            </div>
+            <div className="Cv-education">
+                <div className="Cv-education-title">
+                    <img src={sources.education} className="Cv-logo" alt="logo" />
+                    <span>EDUCATION</span>
+                </div>
+                {educationList}
+            </div>
+        </div >
+    );
 }
 
 export default FirstPage;
