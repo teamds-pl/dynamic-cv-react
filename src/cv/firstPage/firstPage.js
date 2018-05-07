@@ -16,8 +16,7 @@ import './firstPage.css';
 function FirstPage(props) {
     let title = "";
     let headerLogo = "";
-    let user = props.user;
-    let sources = props.sources;
+    let { user, sources } = props;
     let experiencesList = [];
     let educationList = [];
     let defaultSources = {
@@ -42,21 +41,17 @@ function FirstPage(props) {
         }
     }
 
-    if (user.experience) {
-        experiencesList = user.experience.map(function (experience, index) {
-            return (
-                <Experience experience={experience} key={index} />
-            );
-        });
-    }
+    experiencesList = user.experience ? user.experience.map(function (experience, index) {
+        return (
+            <Experience experience={experience} key={index} />
+        );
+    }) : [];
 
-    if (user.education) {
-        educationList = user.education.map(function (education, index) {
-            return (
-                <Education education={education} key={index} />
-            )
-        });
-    }
+    educationList = user.education ? user.education.map(function (education, index) {
+        return (
+            <Education education={education} key={index} />
+        )
+    }) : [];
 
     sources = { ...defaultSources, ...sources };
 

@@ -8,8 +8,7 @@ import target from '../../img/target.svg';
 import './secondPage.css';
 
 function SecondPage(props) {
-    let user = props.user;
-    let sources = props.sources;
+    let { user, sources } = props;
     let skillsetList = [];
     let defaultSources = {
         target: target,
@@ -18,11 +17,9 @@ function SecondPage(props) {
         bluePartCircle: bluePartCircle
     }
 
-    if (user.skillset) {
-        skillsetList = (
-            <Skillset skillset={user.skillset} />
-        );
-    }
+    skillsetList = user.skillset ? (
+        <Skillset skillset={user.skillset} />
+    ) : [];
 
     sources = { ...defaultSources, ...sources };
 
