@@ -1,6 +1,7 @@
 import React from 'react';
 import Experience from "./experience/Experience";
 import './ExperienceContainer.css';
+import StandardSection from "../standardSection/StandardSection";
 
 function ExperienceContainer(props) {
     const userExperience = props.userExperience;
@@ -16,13 +17,7 @@ function ExperienceContainer(props) {
     }
 
     return (
-        <div className="Cv-experience">
-            <div className="Cv-experience-title">
-                <img src={experienceSource} className="Cv-logo" alt="logo" />
-                <span>EXPERIENCE</span>
-            </div>
-            {experiencesList}
-        </div>
+        <StandardSection title="EXPERIENCE" imgSrc={experienceSource} content={experiencesList} />
     );
 }
 

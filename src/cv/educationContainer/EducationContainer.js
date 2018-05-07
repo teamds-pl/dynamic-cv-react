@@ -1,6 +1,7 @@
 import React from 'react';
 import Education from "./education/Education";
 import './EducationContainer.css';
+import StandardSection from "../standardSection/StandardSection";
 
 function EducationContainer(props) {
     const userEducations = props.userEducations;
@@ -16,13 +17,7 @@ function EducationContainer(props) {
     }
 
     return (
-        <div className="Cv-education">
-            <div className="Cv-education-title">
-                <img src={educationSource} className="Cv-logo" alt="logo" />
-                <span>EDUCATION</span>
-            </div>
-            {educationList}
-        </div>
+        <StandardSection title="EDUCATION" imgSrc={educationSource} content={educationList} />
     );
 }
 
