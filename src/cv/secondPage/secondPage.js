@@ -13,7 +13,6 @@ class SecondPage extends Component {
     render() {
         let user = this.props.user;
         let sources = this.props.sources;
-        let skillsetList = [];
         let dafaultSources = {
             target: target,
             skillset: skillset,
