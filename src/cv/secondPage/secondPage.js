@@ -11,7 +11,7 @@ function SecondPage(props) {
     let user = props.user;
     let sources = props.sources;
     let skillsetList = [];
-    let dafaultSources = {
+    let defaultSources = {
         target: target,
         skillset: skillset,
         profile: profile,
@@ -24,7 +24,7 @@ function SecondPage(props) {
         );
     }
 
-    sources = { ...dafaultSources, ...sources };
+    sources = { ...defaultSources, ...sources };
 
     return (
         <div className="Cv-page" id="secondPage">

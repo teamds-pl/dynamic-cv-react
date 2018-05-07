@@ -20,7 +20,7 @@ function FirstPage(props) {
     let sources = props.sources;
     let experiencesList = [];
     let educationList = [];
-    let dafaultSources = {
+    let defaultSources = {
         logoDS: logoDS,
         headerLogo: headerLogo,
         experience: experience,
@@ -30,15 +30,15 @@ function FirstPage(props) {
     if (user.title) {
         title = user.title.toLowerCase()
         if (title.includes('front-end')) {
-            dafaultSources.headerLogo = frontEnd;
+            defaultSources.headerLogo = frontEnd;
         } else if (title.includes('java')) {
-            dafaultSources.headerLogo = java;
+            defaultSources.headerLogo = java;
         } else if (title.includes('test')) {
-            dafaultSources.headerLogo = test;
+            defaultSources.headerLogo = test;
         } else if (title.includes('bussiness')) {
-            dafaultSources.headerLogo = bussinessAnalyst;
+            defaultSources.headerLogo = bussinessAnalyst;
         } else if (title.includes('cq5')) {
-            dafaultSources.headerLogo = cq5;
+            defaultSources.headerLogo = cq5;
         }
     }
 
@@ -58,7 +58,7 @@ function FirstPage(props) {
         });
     }
 
-    sources = { ...dafaultSources, ...sources };
+    sources = { ...defaultSources, ...sources };
 
     return (
         <div className="Cv-page" id="firstPage" >
