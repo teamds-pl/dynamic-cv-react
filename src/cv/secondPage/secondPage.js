@@ -9,7 +9,6 @@ import './secondPage.css';
 
 function SecondPage(props) {
     let { user, sources } = props;
-    let skillsetList = [];
     let defaultSources = {
         target: target,
         skillset: skillset,
@@ -17,7 +16,7 @@ function SecondPage(props) {
         bluePartCircle: bluePartCircle
     }
 
-    skillsetList = user.skillset ? (
+    const skillsetList = user.skillset ? (
         <Skillset skillset={user.skillset} />
     ) : [];
 
