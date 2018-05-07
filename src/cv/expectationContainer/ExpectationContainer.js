@@ -3,8 +3,7 @@ import './ExpectationContainer.css';
 import StandardSection from "../standardSection/StandardSection";
 
 function ExpectationContainer(props) {
-    const sourcesTarget = props.sourcesTarget;
-    const professionalExpectations = props.professionalExpectations;
+    const { sourcesTarget, professionalExpectations } = props;
     return (
         <StandardSection title="PROFESIONAL EXPECTATION" imgSrc={sourcesTarget} content={professionalExpectations} />
     );

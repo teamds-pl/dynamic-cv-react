@@ -3,15 +3,11 @@ import Skillset from "./skillset/Skillset";
 import './SkillsetContainer.css';
 
 function SkillsetContainer(props) {
-    const sourcesSkillset = props.sourcesSkillset;
-    const userSkillset = props.userSkillset;
-    let skillsetList = [];
+    const { sourcesSkillset, userSkillset } = props;
 
-    if (userSkillset) {
-        skillsetList = (
-            <Skillset skillset={userSkillset} />
-        );
-    }
+    const skillsetList = userSkillset ? (
+        <Skillset skillset={userSkillset} />
+    ) : [];
 
     return (
         <div className="Cv-skillset">

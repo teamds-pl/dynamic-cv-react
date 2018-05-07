@@ -2,8 +2,8 @@ import React from 'react';
 import './TitleContainer.css';
 
 function TitleContainer(props) {
-    const sources = props.sources;
-    const user = props.user;
+    const { sources, user } = props;
+
     return (
         <div className="Cv-title">
             <img src={sources.logoDS} className="Cv-logo" alt="logo" />

@@ -5,7 +5,7 @@ import FirstPage from "./firstPage/firstPage";
 
 class Cv extends Component {
   render() {
-    let user = this.props.user;
+    const user = this.props.user;
 
     return (
       <div className="Cv">

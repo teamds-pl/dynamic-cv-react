@@ -4,21 +4,18 @@ import './EducationContainer.css';
 import StandardSection from "../standardSection/StandardSection";
 
 function EducationContainer(props) {
-    const userEducations = props.userEducations;
-    const educationSource = props.educationSource;
-    let educationList = [];
+    const { userEducations, educationSource } = props;
 
-    if (userEducations) {
-        educationList = userEducations.map(function (education, index) {
-            return (
-                <Education education={education} key={index} />
-            )
-        });
-    }
+    const educationList = userEducations ? userEducations.map(function (education, index) {
+        return (
+            <Education education={education} key={index} />
+        )
+    }) : [];
+
 
     return (
         <StandardSection title="EDUCATION" imgSrc={educationSource} content={educationList} />
     );
-}
 
+}
 export default EducationContainer;

@@ -16,7 +16,7 @@ class Skillset extends Component {
                             <span key={index}>
                                 <img src={circleMaroonMiddle} className="Cv-logo" alt="logo" />
                                 {skill},
-                    </span>
+                            </span>
                         )
                     })}
                     {skillset.languages.second.map(function (skill, index) {
@@ -24,7 +24,7 @@ class Skillset extends Component {
                             <span key={index}>
                                 <img src={circleGreyMiddle} className="Cv-logo" alt="logo" />
                                 {skill},
-                    </span>
+                            </span>
                         )
                     })}
                 </div>
@@ -35,7 +35,7 @@ class Skillset extends Component {
                             <span key={index}>
                                 <img src={circleMaroonMiddle} className="Cv-logo" alt="logo" />
                                 {skill},
-                    </span>
+                            </span>
                         )
                     })}
                     {skillset.others.second.map(function (skill, index) {
@@ -43,7 +43,7 @@ class Skillset extends Component {
                             <span key={index}>
                                 <img src={circleGreyMiddle} className="Cv-logo" alt="logo" />
                                 {skill},
-                    </span>
+                            </span>
                         )
                     })}
                 </div>

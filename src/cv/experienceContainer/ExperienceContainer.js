@@ -4,17 +4,13 @@ import './ExperienceContainer.css';
 import StandardSection from "../standardSection/StandardSection";
 
 function ExperienceContainer(props) {
-    const userExperience = props.userExperience;
-    const experienceSource = props.experienceSource;
-    let experiencesList = [];
+    const { userExperience, experienceSource } = props;
 
-    if (userExperience) {
-        experiencesList = userExperience.map(function (experience, index) {
-            return (
-                <Experience experience={experience} key={index} />
-            );
-        });
-    }
+    const experiencesList = userExperience ? userExperience.map(function (experience, index) {
+        return (
+            <Experience experience={experience} key={index} />
+        );
+    }) : [];
 
     return (
         <StandardSection title="EXPERIENCE" imgSrc={experienceSource} content={experiencesList} />

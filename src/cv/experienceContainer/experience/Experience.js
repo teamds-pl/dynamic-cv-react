@@ -6,7 +6,7 @@ import circleMaroonMiddle from '../../../img/circle-maroon-middle.svg';
 
 class Experience extends Component {
     render() {
-        let { experience } = this.props;
+        const { experience } = this.props;
         return (
             <div className="Cv-experience-row">
                 <div className="Cv-experience-date">
