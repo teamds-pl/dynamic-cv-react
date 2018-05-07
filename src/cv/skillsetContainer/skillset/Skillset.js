@@ -6,7 +6,7 @@ import circleMaroonMiddle from '../../../img/circle-maroon-middle.svg';
 
 class Skillset extends Component {
     render() {
-        let { skillset } = this.props;
+        const { skillset } = this.props;
         return (
             <div>
                 <div className="Cv-skillset-row">
