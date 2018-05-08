@@ -1,10 +1,10 @@
 import React from 'react';
 import './Education.css';
 
-import circleGreyMiddle from './../../img/circle-grey-middle.svg';
+import circleGreyMiddle from '../../../img/circle-grey-middle.svg';
 
 function Education(props) {
-    let { education } = props;
+    const { education } = props;
     return (
         <div className="Cv-education-row">
             <div className="Cv-education-date">

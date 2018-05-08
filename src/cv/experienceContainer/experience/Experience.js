@@ -1,11 +1,11 @@
 import React from 'react';
 import './Experience.css';
 
-import circleGreyMiddle from './../../img/circle-grey-middle.svg';
-import circleMaroonMiddle from './../../img/circle-maroon-middle.svg';
+import circleGreyMiddle from '../../../img/circle-grey-middle.svg';
+import circleMaroonMiddle from '../../../img/circle-maroon-middle.svg';
 
 function Experience(props) {
-    let { experience } = props;
+    const { experience } = props;
     return (
         <div className="Cv-experience-row">
             <div className="Cv-experience-date">
@@ -14,14 +14,14 @@ function Experience(props) {
             </div>
             <div className="Cv-experience-text">
                 <img src={circleGreyMiddle} className="Cv-logo" alt="logo" />
-                <div className="Cv-experience-title">{experience.position}</div>
+                <div className="Cv-experience-experience-title">{experience.position}</div>
                 {experience.mainProjects.map(function (project, index) {
                     return (
                         <div key={index}>
-                            <div className="Cv-experience-desc">
+                            <div className="Cv-experience-experience-desc">
                                 {project.desc}
                             </div>
-                            <div className="Cv-experience-technologies">
+                            <div className="Cv-experience-experience-technologies">
                                 Technologies used: {project.technologies.reduce((a, b) => { return a + ', ' + b })}
                             </div>
                         </div>
@@ -32,12 +32,12 @@ function Experience(props) {
                 return (
                     <div className="Cv-experience-text" key={index2}>
                         <img src={circleMaroonMiddle} className="Cv-logo" alt="logo" />
-                        <div className="Cv-experience-title">{project.name} as {project.title}</div>
+                        <div className="Cv-experience-experience-title">{project.name} as {project.title}</div>
                         <div>
-                            <div className="Cv-experience-desc">
+                            <div className="Cv-experience-experience-desc">
                                 {project.desc}
                             </div>
-                            <div className="Cv-experience-technologies">
+                            <div className="Cv-experience-experience-technologies">
                                 Technologies used: {project.technologies.reduce((a, b) => { return a + ', ' + b })}
                             </div>
                         </div>

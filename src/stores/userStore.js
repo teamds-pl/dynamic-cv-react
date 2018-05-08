@@ -1,5 +1,5 @@
 import { observable, decorate } from "mobx"
-import {auth, firestore} from '../firebase';
+import { auth, firestore } from '../firebase';
 import { credentials } from "../environment";
 
 class UserStore {
@@ -10,12 +10,11 @@ class UserStore {
         auth.signInWithEmailAndPassword(credentials.login, credentials.password).then((authUser) => {
             this.userRef = firestore.collection('users').doc(authUser.uid).onSnapshot((snapshot) => {
                 this.user = snapshot.data();
-                console.log(this.user);
             });
         })
-        .catch(error => {
-            console.log('error', error);
-        });
+            .catch(error => {
+                console.log('error', error);
+            });
     }
 }
 
