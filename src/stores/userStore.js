@@ -1,5 +1,5 @@
 import { observable, decorate } from "mobx"
-import {auth, firestore} from '../firebase';
+import { auth, firestore } from '../firebase';
 import { credentials } from "../environment";
 
 class UserStore {
@@ -12,9 +12,9 @@ class UserStore {
                 this.user = snapshot.data();
             });
         })
-        .catch(error => {
-            console.log('error', error);
-        });
+            .catch(error => {
+                console.log('error', error);
+            });
     }
 }
 

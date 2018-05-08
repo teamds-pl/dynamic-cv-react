@@ -1,19 +1,22 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './Cv.css';
 import SecondPage from "./secondPage/secondPage";
 import FirstPage from "./firstPage/firstPage";
 
-class Cv extends Component {
-  render() {
-    const user = this.props.user;
+function Cv(props) {
+  const user = props.user;
 
-    return (
-      <div className="Cv">
-        <FirstPage user={user} sources={{}} />
-        <SecondPage user={user} sources={{}} />
-      </div>
-    );
-  }
+  return (
+    <div className="Cv">
+      {user ?
+        <div>
+          <FirstPage user={user} sources={{}} />
+          <SecondPage user={user} sources={{}} />
+        </div>
+        : ''}
+
+    </div>
+  );
 }
 
 export default Cv;

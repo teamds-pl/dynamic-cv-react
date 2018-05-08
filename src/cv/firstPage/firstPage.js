@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import EducationContainer from "../educationContainer/EducationContainer";
 import ExperienceContainer from "../experienceContainer/ExperienceContainer";
 import TitleContainer from "../titleContainer/TitleContainer";
@@ -14,44 +14,40 @@ import experience from '../../img/experience.svg';
 
 import './firstPage.css';
 
-class FirstPage extends Component {
-    render() {
-        let title = "";
-        let headerLogo = "";
-        let user = this.props.user;
-        let sources = this.props.sources;
-        let dafaultSources = {
-            logoDS: logoDS,
-            headerLogo: headerLogo,
-            experience: experience,
-            education: education
-        }
-
-        if (user.title) {
-            title = user.title.toLowerCase()
-            if (title.includes('front-end')) {
-                dafaultSources.headerLogo = frontEnd;
-            } else if (title.includes('java')) {
-                dafaultSources.headerLogo = java;
-            } else if (title.includes('test')) {
-                dafaultSources.headerLogo = test;
-            } else if (title.includes('bussiness')) {
-                dafaultSources.headerLogo = bussinessAnalyst;
-            } else if (title.includes('cq5')) {
-                dafaultSources.headerLogo = cq5;
-            }
-        }
-
-        sources = { ...dafaultSources, ...sources };
-
-        return (
-            <div className="Cv-page" id="firstPage" >
-                <TitleContainer user={user} sources={sources} />
-                <ExperienceContainer userExperience={user.experience} experienceSource={sources.experience} />
-                <EducationContainer userEducations={user.education} educationSource={sources.education} />
-            </div >
-        );
+function FirstPage(props) {
+    let headerLogo = "";
+    let { user, sources } = props;
+    let defaultSources = {
+        logoDS: logoDS,
+        headerLogo: headerLogo,
+        experience: experience,
+        education: education
     }
+
+    if (user.title) {
+        const title = user.title.toLowerCase()
+        if (title.includes('front-end')) {
+            defaultSources.headerLogo = frontEnd;
+        } else if (title.includes('java')) {
+            defaultSources.headerLogo = java;
+        } else if (title.includes('test')) {
+            defaultSources.headerLogo = test;
+        } else if (title.includes('bussiness')) {
+            defaultSources.headerLogo = bussinessAnalyst;
+        } else if (title.includes('cq5')) {
+            defaultSources.headerLogo = cq5;
+        }
+    }
+
+    sources = { ...defaultSources, ...sources };
+
+    return (
+        <div className="Cv-page" id="firstPage" >
+            <TitleContainer user={user} sources={sources} />
+            <ExperienceContainer userExperience={user.experience} experienceSource={sources.experience} />
+            <EducationContainer userEducations={user.education} educationSource={sources.education} />
+        </div >
+    );
 }
 
 export default FirstPage;

@@ -1,11 +1,11 @@
 import React from 'react';
 import './Skillset.css';
 
-import circleGreyMiddle from '../../../img/circle-grey-middle.svg';
-import circleMaroonMiddle from '../../../img/circle-maroon-middle.svg';
+import circleGreyMiddle from './../../img/circle-grey-middle.svg';
+import circleMaroonMiddle from './../../img/circle-maroon-middle.svg';
 
 function Skillset(props) {
-    const { skillset } = props;
+    let { skillset } = props;
     return (
         <div>
             <div className="Cv-skillset-row">
@@ -15,7 +15,7 @@ function Skillset(props) {
                         <span key={index}>
                             <img src={circleMaroonMiddle} className="Cv-logo" alt="logo" />
                             {skill},
-                            </span>
+                    </span>
                     )
                 })}
                 {skillset.languages.second.map(function (skill, index) {
@@ -23,7 +23,7 @@ function Skillset(props) {
                         <span key={index}>
                             <img src={circleGreyMiddle} className="Cv-logo" alt="logo" />
                             {skill},
-                            </span>
+                    </span>
                     )
                 })}
             </div>
@@ -34,7 +34,7 @@ function Skillset(props) {
                         <span key={index}>
                             <img src={circleMaroonMiddle} className="Cv-logo" alt="logo" />
                             {skill},
-                            </span>
+                    </span>
                     )
                 })}
                 {skillset.others.second.map(function (skill, index) {
@@ -42,7 +42,7 @@ function Skillset(props) {
                         <span key={index}>
                             <img src={circleGreyMiddle} className="Cv-logo" alt="logo" />
                             {skill},
-                            </span>
+                    </span>
                     )
                 })}
             </div>
