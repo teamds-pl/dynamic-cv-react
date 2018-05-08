@@ -1,11 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './Education.css';
 
 import circleGreyMiddle from './../../img/circle-grey-middle.svg';
 
-class Education extends Component {
-  render() {
-    let { education } = this.props;
+function Education(props) {
+    let { education } = props;
     return (
         <div className="Cv-education-row">
             <div className="Cv-education-date">
@@ -19,7 +18,6 @@ class Education extends Component {
             </div>
         </div>
     );
-  }
 }
 
 export default Education;
